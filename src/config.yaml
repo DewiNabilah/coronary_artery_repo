@@ -1,0 +1,71 @@
+data:
+  file_path: data/classification_bonus_practice_data.csv
+  target_column: Survive
+  columns_to_drop:
+    - ID
+    - Favorite color
+
+split:
+  validation_size: 0.20
+  test_size: 0.20
+  random_state: 42
+
+cross_validation:
+  folds: 5
+  scoring: f1
+  n_jobs: -1
+
+models:
+  logistic_regression:
+    max_iter: 2000
+  knn:
+    n_neighbors: 5
+  decision_tree: {}
+
+hyperparameters:
+  Logistic Regression:
+    classifier__C:
+      - 0.01
+      - 0.1
+      - 1
+      - 10
+      - 100
+    classifier__class_weight:
+      - null
+      - balanced
+
+  K-Nearest Neighbours:
+    classifier__n_neighbors:
+      - 3
+      - 5
+      - 7
+      - 9
+      - 11
+    classifier__weights:
+      - uniform
+      - distance
+    classifier__p:
+      - 1
+      - 2
+
+  Decision Tree:
+    classifier__criterion:
+      - gini
+      - entropy
+    classifier__max_depth:
+      - 3
+      - 5
+      - 7
+      - 10
+      - null
+    classifier__min_samples_split:
+      - 2
+      - 5
+      - 10
+    classifier__min_samples_leaf:
+      - 1
+      - 2
+      - 5
+    classifier__class_weight:
+      - null
+      - balanced
